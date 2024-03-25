@@ -39,4 +39,10 @@ export class UserAuthService {
     this.isAuthenticatedValue.next(false);
     this.router.navigate(['/']);
   }
+
+
+  contact(data: any) {
+    return this.http.post('http://localhost:3000/api/admin/contact', data, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) })
+  }
+
 }

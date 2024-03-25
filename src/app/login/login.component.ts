@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AdminAuthService } from '../service/admin-auth.service';
 import { Router, RouterLink } from '@angular/router';
 import { UserAuthService } from '../service/user-auth.service';
 import Swal from 'sweetalert2';
@@ -22,6 +21,7 @@ export class LoginComponent {
   myForm!: FormGroup;
 
   ngOnInit(): void {
+    window.scrollTo({ top: 0, behavior: "instant" })
     this.myForm = this.formBuilder.group({
 
       email: ['', [Validators.required, Validators.email]],

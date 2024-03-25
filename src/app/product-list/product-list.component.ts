@@ -6,6 +6,8 @@ import { ProductService } from '../service/product.service';
 import { WishService } from '../service/wish.service';
 import { StarRatingComponent } from '../star-rating/star-rating.component';
 import { HeaderComponent } from '../partials/header/header.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserAuthService } from '../service/user-auth.service';
 
 declare global {
   interface Window {
@@ -19,14 +21,14 @@ declare global {
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [CommonModule, RouterLink, StarRatingComponent, HeaderComponent],
+  imports: [CommonModule, RouterLink, StarRatingComponent, HeaderComponent, FormsModule],
   templateUrl: './product-list.component.html',
 
   styleUrl: './product-list.component.css'
 })
 export class ProductListComponent {
 
-  constructor(private category: CategoryService, private product: ProductService, private router: Router, private wish: WishService) { }
+  constructor(private category: CategoryService, private user: UserAuthService, private product: ProductService, private router: Router, private wish: WishService) { }
 
   categories: any[] = [];
 
@@ -35,6 +37,8 @@ export class ProductListComponent {
 
 
   ngOnInit() {
+    window.scrollTo({ top: 0, behavior: "instant" })
+
     this.category.getCategory().subscribe((category: any) => this.categories = category);
     this.product.getTrending().subscribe((trending: any) => this.trending = trending);
     this.product.getNew().subscribe((trending: any) => this.newProduct = trending);
@@ -62,6 +66,38 @@ export class ProductListComponent {
 
   navToCategory(id: any) {
     this.router.navigateByUrl(`/shop?category=${id}`)
+
+  }
+
+  contact = {
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  }
+
+  err!: string;
+
+  check() {
+    this.err = ''
+  }
+
+  contactAdmin() {
+
+    if (this.contact.name === '' || this.contact.email === '' || this.contact.subject === '' || this.contact.message === '') {
+      this.err = "please fill all the fields"
+      return;
+    }
+
+    this.user.contact(this.contact).subscribe(contact => {
+      console.log(contact)
+      this.contact = {
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      }
+    })
 
   }
 

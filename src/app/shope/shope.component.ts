@@ -38,6 +38,7 @@ export class ShopeComponent {
   check = false;
   pageNo: any[] = [];
   ngOnInit(): void {
+    window.scrollTo({ top: 0, behavior: "instant" })
 
     // Subscribe to filter changes and debounce the input
     this.filterSubject.pipe(

@@ -9,4 +9,9 @@ import { Component } from '@angular/core';
 })
 export class PrivacyPaclicyComponent {
 
+  ngOnInit() {
+    window.scrollTo({ top: 0, behavior: "instant" })
+
+  }
+
 }

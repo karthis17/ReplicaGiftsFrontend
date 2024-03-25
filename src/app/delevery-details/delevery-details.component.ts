@@ -50,6 +50,7 @@ export class DeleveryDetailsComponent {
   checkoutData: any;
 
   ngOnInit() {
+
     this.totalPrice = 0;
     this.route.params.pipe(
       takeUntil(this.unsubscribe$)

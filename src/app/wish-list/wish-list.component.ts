@@ -19,6 +19,8 @@ export class WishListComponent {
   wishList: any[] = [];
 
   ngOnInit() {
+    window.scrollTo({ top: 0, behavior: "instant" })
+
     this.get()
   }
 

@@ -257,7 +257,6 @@
               <div class="swiper-wrapper">
                 <ng-container *ngFor="let gift of gifts; let i = index">
                   <div
-                    (click)="addGift(gift)"
                     class="product__item swiper-slide"
                     data-aos="flip-right"
                     data-aos="flip-right"
@@ -291,6 +290,13 @@
                         (click)="removeGift(gift)"
                       >
                         Remove
+                      </button>
+                      <button
+                        *ngIf="!isGiftSelected(gift._id)"
+                        class="btn btn-danger"
+                        (click)="addGift(gift)"
+                      >
+                        Add
                       </button>
                     </div>
                   </div>

@@ -42,6 +42,8 @@ export class ProfileComponent {
 
   ngOnInit() {
     this.get()
+    window.scrollTo({ top: 0, behavior: "instant" })
+
   }
 
   get() {

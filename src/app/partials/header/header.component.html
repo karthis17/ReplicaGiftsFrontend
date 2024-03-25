@@ -23,9 +23,11 @@
       <!-- <p class="header__alert-news">
         </p> -->
       <div>
-        <a (click)="navToLogin()" class="header__top-action"
+        <a
+          (click)="isAuth ? navToProfile() : navToLogin()"
+          class="header__top-action"
           ><i class="bi bi-person"></i>
-          Log In / Sign Up
+          {{ isAuth ? username : "Log In / Sign Up" }}
         </a>
       </div>
     </div>
@@ -84,7 +86,21 @@
           </li> -->
       </ul>
       <div class="header__search" data-aos="fade-left">
-        <input type="text" placeholder="Search Photos..." class="form__input" />
+        <input
+          type="text"
+          placeholder="Search Photos..."
+          class="form__input"
+          [(ngModel)]="searchText"
+          (input)="search()"
+          (change)="navtoproduct()"
+          list="filterOptions"
+        />
+        <datalist id="filterOptions">
+          <!-- Add ID to datalist -->
+          <option *ngFor="let filter of searchMenu">
+            {{ filter.title }}
+          </option>
+        </datalist>
         <button class="search__btns">
           <img
             src="../.././../assets/assets/img/search-icon.svg"

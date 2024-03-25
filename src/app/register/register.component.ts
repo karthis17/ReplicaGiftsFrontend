@@ -20,6 +20,8 @@ export class RegisterComponent {
   myForm!: FormGroup;
 
   ngOnInit(): void {
+    window.scrollTo({ top: 0, behavior: "instant" })
+
     this.myForm = this.formBuilder.group({
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],

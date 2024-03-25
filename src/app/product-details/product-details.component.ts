@@ -77,7 +77,9 @@ export class ProductDetailsComponent {
   }
 
   removeGift(gift: any) {
-    this.selectedGifts.splice(this.selectedGifts.findIndex(f => f.gift.toString() === gift._id.toString()), 1)
+    let i = this.selectedGifts.findIndex(f => f.gift.toString() === gift._id.toString());
+    this.selectedGifts.splice(i, 1);
+    console.log(this.selectedGifts)
   }
 
   data: Product = {
@@ -97,6 +99,8 @@ export class ProductDetailsComponent {
   };
 
   ngOnInit(): void {
+    window.scrollTo({ top: 0, behavior: "instant" })
+
     this.rating = 0;
     this.route.params.pipe(
       takeUntil(this.unsubscribe$)
@@ -167,7 +171,7 @@ export class ProductDetailsComponent {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Fil the required fields",
+        text: "Fill the required fields",
       });
 
     }
@@ -180,6 +184,12 @@ export class ProductDetailsComponent {
       this.cart.addFrame(this.frameDeatails, this.selectedGifts, id).subscribe((dat: any) => {
         console.log(dat);
         this.router.navigateByUrl(`/buy-now/${dat._id}`);
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Fill the required fields",
       });
     }
   }

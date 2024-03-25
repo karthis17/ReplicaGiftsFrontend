@@ -9,4 +9,9 @@ import { Component } from '@angular/core';
 })
 export class TearmsAndConditionComponent {
 
+  ngOnInit() {
+    window.scrollTo({ top: 0, behavior: "instant" })
+
+  }
+
 }

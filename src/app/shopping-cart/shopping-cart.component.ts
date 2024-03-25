@@ -22,6 +22,8 @@ export class ShoppingCartComponent {
 
   ngOnInit() {
     this.total = 0;
+    window.scrollTo({ top: 0, behavior: "instant" })
+
     this.get();
   }
 
